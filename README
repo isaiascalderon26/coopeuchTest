@@ -1,0 +1,65 @@
+# CRUD de Tareas
+
+Este es un CRUD (Get, Post, Update, Delete) de tareas desarrollado utilizando Spring Boot y Gradle. Permite gestionar tareas, incluyendo la creación, lectura, actualización y eliminación de tareas.
+
+## Requisitos
+
+Asegúrate de tener instalado lo siguiente antes de ejecutar la aplicación:
+
+- Java Development Kit (JDK) 17 o superior
+- Gradle
+- Base de datos MySQL
+
+## Configuración
+
+1. Clona el repositorio o descarga el código fuente del CRUD de tareas.
+
+```bash
+git clone https://github.com/tu-usuario/crud-tareas.git
+
+
+2. Crea una base de datos en MySQL para el CRUD de tareas.
+
+3. Actualiza la configuración de la base de datos en el archivo application.properties ubicado en src/main/resources.
+Asegúrate de especificar la URL, el nombre de usuario y la contraseña correctos para acceder a tu base de datos MySQL.
+
+Ejemplo:
+spring.datasource.url=jdbc:mysql://localhost:3306/nombre_de_la_base_de_datos
+spring.datasource.username=usuario
+spring.datasource.password=contraseña
+
+4. Ejecucion:
+Navega hasta el directorio raíz del proyecto donde se encuentra el archivo build.gradle
+cd crud-tareas
+
+5. Compila:
+Compila y ejecuta la aplicación utilizando Gradle
+puede ser con comando gradle bootRun o atravez de la interfaz de Intelellij
+La aplicación se iniciará y estará disponible en http://localhost:8080.
+
+6. Uso del Crud
+A continuación se describen los endpoints disponibles para interactuar con el CRUD de tareas.
+
+Obtener todas las tareas
+GET /api/v1/task
+
+Obtener una tarea por identificador
+GET /api/v1/task/{identificador}
+
+Crear una nueva tarea
+POST /api/v1/task
+
+Enviar una solicitud JSON con los datos de la tarea en el cuerpo de la solicitud.
+Actualizar una tarea existente
+PUT /api/v1/task/{identificador}
+
+Enviar una solicitud JSON con los datos actualizados de la tarea en el cuerpo de la solicitud.
+
+Eliminar una tarea
+DELETE /api/v1/task/{identificador}
+¡Recuerda reemplazar {identificador} con el identificador real de la tarea que
+deseas obtener, actualizar o eliminar!
+
+
+Recuerda reemplazar los valores de `nombre_de_la_base_de_datos`, `usuario` y `contraseña`
+con los correspondientes a tu configuración de base de datos.
