@@ -1,4 +1,4 @@
-# CRUD de Tareas
+1 CRUD de Tareas
 
 Este es un CRUD (Get, Post, Update, Delete) de tareas desarrollado utilizando Spring Boot y Gradle. Permite gestionar tareas, incluyendo la creación, lectura, actualización y eliminación de tareas.
 
@@ -18,9 +18,18 @@ Asegúrate de tener instalado lo siguiente antes de ejecutar la aplicación:
 git clone https://github.com/tu-usuario/crud-tareas.git
 
 
-2. Crea una base de datos en MySQL para el CRUD de tareas.
+2. Crea una base de datos y tabla en MySQL para el CRUD de tareas:  Primer Script CREATE DATABASE `crudCope` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+  Segundo Srcipt  -- crudCope.tbl_task definition
 
-3. Actualiza la configuración de la base de datos en el archivo application.properties ubicado en src/main/resources.
+CREATE TABLE `tbl_task` (
+  `identificador` int NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `fecha_creacion` datetime(6) DEFAULT NULL,
+  `vigente` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`identificador`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;  
+
+3. Actualiza la configuración de la base de datos en el archivo application.properties ubicado en src/main/resources. 
 Asegúrate de especificar la URL, el nombre de usuario y la contraseña correctos para acceder a tu base de datos MySQL.
 
 Ejemplo:
@@ -37,7 +46,7 @@ Compila y ejecuta la aplicación utilizando Gradle
 puede ser con comando gradle bootRun o atravez de la interfaz de Intelellij
 La aplicación se iniciará y estará disponible en http://localhost:8080.
 
-6. Uso del Crud
+6. Uso del Crud con Postman
 A continuación se describen los endpoints disponibles para interactuar con el CRUD de tareas.
 
 Obtener todas las tareas
@@ -46,7 +55,7 @@ GET /api/v1/task
 Obtener una tarea por identificador
 GET /api/v1/task/{identificador}
 
-Crear una nueva tarea
+Crear una nueva tareaP
 POST /api/v1/task
 
 Enviar una solicitud JSON con los datos de la tarea en el cuerpo de la solicitud.
@@ -63,3 +72,6 @@ deseas obtener, actualizar o eliminar!
 
 Recuerda reemplazar los valores de `nombre_de_la_base_de_datos`, `usuario` y `contraseña`
 con los correspondientes a tu configuración de base de datos.
+
+7. Swagger Se destaca dentro el documento swagger en esta URL que adjunto
+ http://localhost:8080/swagger-ui/index.html

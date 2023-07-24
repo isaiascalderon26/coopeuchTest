@@ -2,6 +2,8 @@ package com.desafio.app.rest.controller;
 
 import com.desafio.app.rest.entity.Task;
 import com.desafio.app.rest.service.TaskService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,16 +16,19 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/task")
+@Api(value = "TaskController", description = "API para realizar operaciones CRUD en tareas")
 public class TaskController {
 
     @Autowired
     private TaskService taskService;
 
+    @ApiOperation(value = "Obtener todas las tareas", notes = "Obtiene una lista de todas las tareas registradas.")
     @GetMapping
     public List<Task> getAll() {
         return taskService.getTasks();
     }
 
+    @ApiOperation(value = "Obtener una tarea por identificador", notes = "Obtiene una tarea por su identificador.")
     @GetMapping("/{identificador}")
     public ResponseEntity<?> getById(@PathVariable("identificador") Integer id) {
         Optional<Task> taskOptional = taskService.getTask(id);
@@ -35,6 +40,7 @@ public class TaskController {
         }
     }
 
+    @ApiOperation(value = "Agregar una nueva tarea", notes = "Agrega una nueva tarea a la lista.")
     @PostMapping
     public ResponseEntity<String> create(@Validated @RequestBody Task task) {
         if (StringUtils.isEmpty(task.getDescripcion()) || task.getFechaCreacion() == null || task.getVigente() == null) {
@@ -54,6 +60,7 @@ public class TaskController {
         }
     }
 
+    @ApiOperation(value = "Actualizar una tarea", notes = "Actualiza una tarea existente.")
     @PutMapping("/{identificador}")
     public ResponseEntity<String> update(@PathVariable("identificador") Integer id, @Validated @RequestBody Task updatedTask) {
         Optional<Task> taskOptional = taskService.getTask(id);
@@ -82,6 +89,8 @@ public class TaskController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @ApiOperation(value = "Eliminar una tarea", notes = "Elimina una tarea de la lista.")
     @DeleteMapping("/{identificador}")
     public ResponseEntity<String> delete(@PathVariable("identificador") Integer id) {
         Optional<Task> taskOptional = taskService.getTask(id);
